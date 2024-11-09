@@ -1,0 +1,151 @@
+\documentclass[runningheads]{llncs}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{xcolor}
+
+\begin{document}
+
+\title{Vibe Check: Sentiment Analysis of Tweets}
+\author{Jeff Rouzel Bat-og\inst{1} \and Zyrex Djewel Ganit\inst{1} \and Rainer Mayagma\inst{1}}
+\authorrunning{J. R. Bat-og et al.}
+\institute{University of the Philippines Visayas, Miagao, Iloilo\\
+\email{\{jabatog, zfganit, rtmayagma\}@up.edu.ph}}
+
+\maketitle
+
+\begin{abstract}
+This proposal outlines our project, focusing on sentiment analysis of tweets. We aim to leverage 
+machine learning models to classify sentiments as neutral, positive, or negative using a dataset 
+of tweets. The insights gained will provide valuable information about public sentiment on various issues.
+\end{abstract}
+
+\keywords{Sentiment analysis, Twitter, Machine learning, Machine learning models, Natural language processing}
+
+\section{Introduction}
+The topic we want to study is sentiment analysis of tweets. Social media platforms, particularly 
+Twitter, are sources of user-generated content that reflect real-time public opinions. This study 
+is relevant as it helps understand public sentiment on various topics and trends, which is 
+essential for businesses, policymakers, and researchers. By analyzing sentiments, we can address 
+valuable problems such as gauging public reaction to events, products, or policies, thus aiding in informed decision-making.
+
+This project builds upon existing research in the field of natural language processing (NLP) and 
+machine learning. Prior studies have employed various techniques to analyze sentiments, including 
+traditional machine learning models and more recent deep learning approaches. By implementing and 
+comparing multiple models, we aim to contribute to the understanding of which methods are most 
+effective for sentiment classification in tweets.
+
+\section{Related Literature}
+The field of sentiment analysis has garnered significant attention in recent years. Research by 
+Pang and Lee (2008) highlights the efficacy of different machine learning algorithms in text 
+classification tasks. Logistic regression and naive Bayes have been widely adopted due to their 
+simplicity and effectiveness~\cite{ref_article1}.
+
+A key challenge in sentiment analysis is handling negation, which can significantly alter the 
+meaning of a sentence. Traditional models often struggle to capture negation effectively, leading 
+to biases and misclassification of sentiments. Studies have demonstrated that inappropriate processing 
+of negations can adversely affect sentiment polarity detection~\cite{ref_article2}. Furthermore, 
+Kaddoura et al. (2021) emphasize that in dialectal Arabic, the presence of negation can drastically 
+change the polarity of opinionated words, complicating sentiment analysis in social media contexts. 
+Their findings indicate that treating negation improves classification accuracy, highlighting its 
+importance in sentiment analysis tasks~\cite{ref_article3}.
+
+\section{Proposed Method}
+We will utilize supervised learning techniques to classify sentiments based on the labeled dataset. 
+To further improve model performance, we will implement a negation handling mechanism using the 
+negspacy package. Negspacy allows the model to capture the effect of negation in sentences, which 
+is crucial for sentiment analysis, as phrases like "not good" should be classified differently from "good."
+
+The models we plan to implement are summarized in Table \ref{tab:methods}.
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|l|p{10cm}|}
+        \hline
+        \textbf{Model} & \textbf{Description} \\ \hline
+        Logistic Regression & A baseline model known for its efficiency in binary and multi-class classification tasks. \\ \hline
+        Naive Bayes & A probabilistic model that leverages the independence assumption among features. \\ \hline
+        Decision Trees & A non-parametric model that provides interpretability in decision-making processes. \\ \hline
+        Random Forests & An ensemble method that improves classification accuracy by aggregating results from multiple decision trees. \\ \hline
+    \end{tabular}
+    \caption{Overview of the proposed methods for sentiment classification.}
+    \label{tab:methods}
+\end{table}
+
+\section{Dataset}
+The dataset for our analysis can be found on Kaggle, containing 27,481 tweets with several columns, 
+as shown in Table \ref{tab:dataset}. The dataset link can be accessed 
+\textcolor{blue}{\href{https://www.kaggle.com/datasets/abhi8923shriv/sentiment-analysis-dataset?select=train.csv}{here}}.
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|l|p{10cm}|}
+        \hline
+        \textbf{Column Name} & \textbf{Description} \\ \hline
+        TextID & Unique identifier for each tweet. \\ \hline
+        Text & The content of the tweet. \\ \hline
+        Selected Text & A highlighted portion of the tweet relevant to sentiment analysis. \\ \hline
+        Sentiment & The labeled sentiment (neutral, positive, or negative). \\ \hline
+        Time of Tweet & The timestamp indicating when the tweet was posted. \\ \hline
+        Age of User & The age of the user who posted the tweet. \\ \hline
+        Country & The country of the user. \\ \hline
+        Population (2020) & The population of the country as of 2020. \\ \hline
+        Land Area (Km) & The total land area of the country in square kilometers. \\ \hline
+        Density (P/Km) & Population density of the country (people per square kilometer). \\ \hline
+    \end{tabular}
+    \caption{Overview of the dataset columns.}
+    \label{tab:dataset}
+\end{table}
+
+\newpage
+
+\section{Metrics for Evaluation}
+We will evaluate our models using the metrics summarized in Table \ref{tab:metrics}.
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|l|p{10cm}|}
+        \hline
+        \textbf{Metric} & \textbf{Description} \\ \hline
+        F1 Score & The harmonic mean of precision and recall, providing a balance between the two metrics. \\ \hline
+        Recall & The ratio of true positive predictions to the total actual positives, measuring the model's ability to identify all relevant instances. \\ \hline
+        Precision & The ratio of true positive predictions to the total predicted positives, assessing the model's accuracy in its positive predictions. \\ \hline
+        Accuracy & The overall ratio of correct predictions to the total instances. \\ \hline
+    \end{tabular}
+    \caption{Overview of evaluation metrics for model performance.}
+    \label{tab:metrics}
+\end{table}
+
+These metrics are crucial for understanding model performance in multi-class classification problems 
+and will guide our model selection process.
+
+\section{Tools and Packages}
+The project will be implemented using Python, with the following libraries:
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|l|p{10cm}|}
+        \hline
+        \textbf{Library} & \textbf{Description} \\ \hline
+        Pandas & For data manipulation and analysis. \\ \hline
+        Scikit-learn & For implementing machine learning algorithms and model evaluation. \\ \hline
+        Matplotlib/Seaborn & For data visualization and presenting results. \\ \hline
+        NLTK/Spacy & For natural language processing tasks, including text preprocessing and feature extraction. \\ \hline
+    \end{tabular}
+    \caption{Overview of tools and packages used in the project.}
+    \label{tab:tools}
+\end{table}
+
+\newpage
+\begin{thebibliography}{8}
+\bibitem{ref_article1}
+Pang, B., \& Lee, L.: A sentimental education: Sentiment analysis using machine learning techniques. \textit{Proceedings of the 2008 Conference on Empirical Methods in Natural Language Processing}, pp. 811-818 (2008).
+
+\bibitem{ref_article2}
+Mukherjee, P., Badra, Y., Doppalapudi, S. M., Srinivasan, S. M., Sangwan, R. S., \& Sharma, R.: Effect of Negation in Sentences on Sentiment Analysis and Polarity Detection. \textit{The Pennsylvania State University, Great Valley}, (2023).
+
+\bibitem{ref_article3}
+Kaddoura, S., Itani, M., \& Roast, C.: Analyzing the Effect of Negation in Sentiment Polarity of Facebook Dialectal Arabic Text. \textit{Applied Sciences}, vol. 11, no. 11, p. 4768, (2021). https://doi.org/10.3390/app11114768
+\end{thebibliography}
+
+\end{document}
