@@ -4,6 +4,8 @@
 \usepackage{hyperref}
 \usepackage{xcolor}
 
+\renewcommand{\labelitemi}{$\bullet$}
+
 \begin{document}
 
 \title{Vibe Check: Sentiment Analysis of Tweets}
@@ -15,25 +17,16 @@
 \maketitle
 
 \begin{abstract}
-This proposal outlines our project, focusing on sentiment analysis of tweets. We aim to leverage 
-machine learning models to classify sentiments as neutral, positive, or negative using a dataset 
-of tweets. The insights gained will provide valuable information about public sentiment on various issues.
+This proposal outlines our project, focusing on sentiment analysis of tweets. We aim to leverage machine learning models to classify textual data into emotional categories such as sadness, anger, and happiness, the study aims to accurately identify emotional tones and provide actionable insights. These findings could inform public sentiment analysis on various issues and support applications like mental health monitoring and user experience enhancement.
 \end{abstract}
 
-\keywords{Sentiment analysis, Twitter, Machine learning, Machine learning models, Natural language processing}
+\keywords{Sentiment analysis, Emotion, Machine learning, Machine learning models, Natural language processing}
 
 \section{Introduction}
-The topic we want to study is sentiment analysis of tweets. Social media platforms, particularly 
-Twitter, are sources of user-generated content that reflect real-time public opinions. This study 
-is relevant as it helps understand public sentiment on various topics and trends, which is 
-essential for businesses, policymakers, and researchers. By analyzing sentiments, we can address 
-valuable problems such as gauging public reaction to events, products, or policies, thus aiding in informed decision-making.
+The project will focus on Sentiment Analysis, where we classify the statements (e.g., tweets) into the emotional tone they convey, such as sadness, anger, happiness, or other emotions. By using machine learning models such as Naive Bayes, Logistic Regression, Random Forest, and SVM, the study aims to identify the emotional tone of given textual data accurately, and label based on what was predicted.
 
-This project builds upon existing research in the field of natural language processing (NLP) and 
-machine learning. Prior studies have employed various techniques to analyze sentiments, including 
-traditional machine learning models and more recent deep learning approaches. By implementing and 
-comparing multiple models, we aim to contribute to the understanding of which methods are most 
-effective for sentiment classification in tweets.
+Relevant literature includes studies on text classification and neural networks for Natural Language Processing (NLP). Research in this field often highlights the balance between interpretability (Naive Bayes, Logistic Regression) and predictive power (Random Forest, SVM). Additionally, while the project’s primary objective is to determine the emotion associated with the data, this classification lays the foundation for further analysis or applications, such as understanding emotional trends or serving as a component in larger systems like mental health monitoring or user experience tools.
+
 
 \section{Related Literature}
 The field of sentiment analysis has garnered significant attention in recent years. Research by 
@@ -48,69 +41,59 @@ of negations can adversely affect sentiment polarity detection~\cite{ref_article
 Kaddoura et al. (2021) emphasize that in dialectal Arabic, the presence of negation can drastically 
 change the polarity of opinionated words, complicating sentiment analysis in social media contexts. 
 Their findings indicate that treating negation improves classification accuracy, highlighting its 
-importance in sentiment analysis tasks~\cite{ref_article3}.
+importance in sentiment analysis tasks~\cite{ref_article3}. 
+A study of Nandwani and Verma (2021) emphasized the importance of sentiment analysis and emotion detection in processing data from social media, where users express emotions and opinions freely. Sentiment analysis identifies the polarity of text (positive, negative, or neutral), while emotion detection delves into specific emotional states like joy or anger. These techniques, supported by NLP, are applied across business, healthcare, and education to enhance customer feedback analysis, monitor mental health, and improve teaching methods. Methods range from lexicon-based to machine learning and deep learning approaches, each with unique strengths and challenges, including managing context and ambiguity in language~\cite{ref_article4}.
 
 \section{Proposed Method}
-We will utilize supervised learning techniques to classify sentiments based on the labeled dataset. 
-To further improve model performance, we will implement a negation handling mechanism using the 
-negspacy package. Negspacy allows the model to capture the effect of negation in sentences, which 
-is crucial for sentiment analysis, as phrases like "not good" should be classified differently from "good."
+We propose using Naive Bayes, Logistic Regression, Random Forest, and Support Vector Machine (SVM) as our classification algorithms. Naive Bayes is computationally efficient and works well with smaller datasets. Logistic Regression provides a balance between simplicity and predictive power, while Random Forest, leverages ensemble learning to capture complex relationships in the given data. Lastly, SVM shines in higher dimensional spaces effective for text classification tasks. \\
+
+Steps include:
+\begin{itemize}
+	\item Preprocessing text (tokenization, stopword removal)
+	\item Feature extraction using TF-IDF and N-grams
+	\item Model training with both algorithms
+	\item Evaluation and comparison of models using accuracy, precision, and recall
+\end{itemize}
+We selected these methods based on their performance in prior sentiment analysis studies. \\
 
 The models we plan to implement are summarized in Table \ref{tab:methods}.
 
 \begin{table}[h!]
-    \centering
-    \begin{tabular}{|l|p{10cm}|}
-        \hline
-        \textbf{Model} & \textbf{Description} \\ \hline
-        Logistic Regression & A baseline model known for its efficiency in binary and multi-class classification tasks. \\ \hline
-        Naive Bayes & A probabilistic model that leverages the independence assumption among features. \\ \hline
-        Decision Trees & A non-parametric model that provides interpretability in decision-making processes. \\ \hline
-        Random Forests & An ensemble method that improves classification accuracy by aggregating results from multiple decision trees. \\ \hline
-    \end{tabular}
-    \caption{Overview of the proposed methods for sentiment classification.}
-    \label{tab:methods}
+	\centering
+	\begin{tabular}{|l|p{10cm}|}
+		\hline
+		\textbf{Model} & \textbf{Description} \\ \hline
+		Naive Bayes & A probabilistic model that applies Bayes' theorem with an assumption of feature independence. \\ \hline
+		Logistic Regression & A statistical model used for binary and multi-class classification, effective for linearly separable data. \\ \hline
+		Random Forest & An ensemble learning method that combines multiple decision trees to improve prediction accuracy and reduce overfitting. \\ \hline
+		SVM & A supervised learning model that uses hyperplanes to separate data points into classes, effective in high-dimensional spaces. \\ \hline
+	\end{tabular}
+	\caption{Overview of the proposed methods for sentiment classification.}
+	\label{tab:methods}
 \end{table}
+
+
 
 \section{Dataset}
-The dataset for our analysis can be found on Kaggle, containing 27,481 tweets with several columns, 
-as shown in Table \ref{tab:dataset}. The dataset link can be accessed 
-\textcolor{blue}{\href{https://www.kaggle.com/datasets/abhi8923shriv/sentiment-analysis-dataset?select=train.csv}{here}}.
-
-\begin{table}[h!]
-    \centering
-    \begin{tabular}{|l|p{10cm}|}
-        \hline
-        \textbf{Column Name} & \textbf{Description} \\ \hline
-        TextID & Unique identifier for each tweet. \\ \hline
-        Text & The content of the tweet. \\ \hline
-        Selected Text & A highlighted portion of the tweet relevant to sentiment analysis. \\ \hline
-        Sentiment & The labeled sentiment (neutral, positive, or negative). \\ \hline
-        Time of Tweet & The timestamp indicating when the tweet was posted. \\ \hline
-        Age of User & The age of the user who posted the tweet. \\ \hline
-        Country & The country of the user. \\ \hline
-        Population (2020) & The population of the country as of 2020. \\ \hline
-        Land Area (Km) & The total land area of the country in square kilometers. \\ \hline
-        Density (P/Km) & Population density of the country (people per square kilometer). \\ \hline
-    \end{tabular}
-    \caption{Overview of the dataset columns.}
-    \label{tab:dataset}
-\end{table}
+We will use a publicly available dataset from Kaggle (e.g., Emotions Analysis Dataset), which contains emotion-labeled sentences. The data includes thousands of samples categorized into sadness, surprise, joy, love, fear, anger emotion.
+The dataset link can be accessed 
+\textcolor{blue}{\href{https://www.kaggle.com/datasets/praveengovi/emotions-dataset-for-nlp/data}{here}}.
 
 \newpage
 
 \section{Metrics for Evaluation}
-We will evaluate our models using the metrics summarized in Table \ref{tab:metrics}.
+We will use the following metrics to evaluate the performance of our models based on Table \ref{tab:methods}:
 
 \begin{table}[h!]
     \centering
     \begin{tabular}{|l|p{10cm}|}
         \hline
         \textbf{Metric} & \textbf{Description} \\ \hline
+        Accuracy & Measures the overall correctness of predictions. \\ \hline	
+        Precision and Recall & To handle class imbalance and measure the model’s performance for each emotion. \\ \hline
         F1 Score & The harmonic mean of precision and recall, providing a balance between the two metrics. \\ \hline
-        Recall & The ratio of true positive predictions to the total actual positives, measuring the model's ability to identify all relevant instances. \\ \hline
-        Precision & The ratio of true positive predictions to the total predicted positives, assessing the model's accuracy in its positive predictions. \\ \hline
-        Accuracy & The overall ratio of correct predictions to the total instances. \\ \hline
+        Confusion Matrix &  To visualize the performance of each category. \\ \hline
+        
     \end{tabular}
     \caption{Overview of evaluation metrics for model performance.}
     \label{tab:metrics}
@@ -130,7 +113,8 @@ The project will be implemented using Python, with the following libraries:
         Pandas & For data manipulation and analysis. \\ \hline
         Scikit-learn & For implementing machine learning algorithms and model evaluation. \\ \hline
         Matplotlib/Seaborn & For data visualization and presenting results. \\ \hline
-        NLTK/Spacy & For natural language processing tasks, including text preprocessing and feature extraction. \\ \hline
+        NLTK & For natural language processing tasks, including text preprocessing and feature extraction. \\ \hline
+        TensorFlow/Keras & For neural networks \\ \hline
     \end{tabular}
     \caption{Overview of tools and packages used in the project.}
     \label{tab:tools}
@@ -146,6 +130,9 @@ Mukherjee, P., Badra, Y., Doppalapudi, S. M., Srinivasan, S. M., Sangwan, R. S.,
 
 \bibitem{ref_article3}
 Kaddoura, S., Itani, M., \& Roast, C.: Analyzing the Effect of Negation in Sentiment Polarity of Facebook Dialectal Arabic Text. \textit{Applied Sciences}, vol. 11, no. 11, p. 4768, (2021). https://doi.org/10.3390/app11114768
+
+\bibitem{ref_article4}
+Nandwani, P., \& Verma, R. (2021). A review on sentiment analysis and emotion detection from text. Social Network Analysis and Mining, 11(81). https://doi.org/10.1007/s13278-021-00776-6
 \end{thebibliography}
 
 \end{document}
