@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.8.29)  26 NOV 2024 00:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.8.29)  26 NOV 2024 09:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -468,20 +468,20 @@ Overfull \hbox (25.54076pt too wide) in paragraph at lines 89--98
  []
 
 
-Overfull \hbox (23.17398pt too wide) in paragraph at lines 110--119
+Overfull \hbox (23.17398pt too wide) in paragraph at lines 110--118
  [][] 
  []
 
 
 
 [3]
-Underfull \hbox (badness 1895) in paragraph at lines 135--136
+Underfull \hbox (badness 1895) in paragraph at lines 134--135
 []\T1/cmr/m/n/9 Nandwani, P., & Verma, R. (2021). A re-view on sen-ti-ment anal
 -y-sis and
  []
 
 
-Underfull \hbox (badness 1496) in paragraph at lines 135--136
+Underfull \hbox (badness 1496) in paragraph at lines 134--135
 \T1/cmr/m/n/9 emo-tion de-tec-tion from text. So-cial Net-work Anal-y-sis and M
 in-ing, 11(81).
  []
@@ -516,7 +516,7 @@ Users\Jeff Rouzel\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1
 dpi600\ecbx1440.pk><C:/Users/Jeff Rouzel/AppData/Local/Programs/MiKTeX/fonts/ty
 pe1/public/amsfonts/cm/cmr7.pfb><C:/Users/Jeff Rouzel/AppData/Local/Programs/Mi
 KTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on VibeCheckProposal.pdf (4 pages, 123524 bytes).
+Output written on VibeCheckProposal.pdf (4 pages, 123456 bytes).
 PDF statistics:
  374 PDF objects out of 1000 (max. 8388607)
  21 named destinations out of 1000 (max. 500000)
